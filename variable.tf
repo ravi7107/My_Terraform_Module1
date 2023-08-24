@@ -15,10 +15,6 @@ variable "instance_type" {
         default = "t2.micro"
 }
 
-variable "subnet_id" {
-        description = "The VPC subnet the instance(s) will be created in"
-}
-
 variable "ami_id" {
         description = "The AMI to use"
         default = "ami-053b0d53c279acc90"
@@ -31,5 +27,5 @@ variable "number_of_instances" {
 
 
 variable "ami_key_pair_name" {
-        default = "Mypem.pem"
+        default = "Mypem"
 }
