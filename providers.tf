@@ -3,8 +3,7 @@ provider "aws" {
 }
 
 data "aws_ami" "ubuntu" {
-  most_recent = true
-  owners      = ["679593333241"]
+ default = "ami-0261755bbcb8c4a84"
 
   filter {
     name   = "name"
