@@ -1,8 +1,8 @@
 variable "access_key" {
-        description = "AKIA6KE3AQUXATJOBTY4"
+        description = "AKIA6KE3AQUXJRNL33XH""
 }
 variable "secret_key" {
-        description = "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"
+        description = "+I9v9DzOD/xTyPoLj4dvYPEF6R89tuj9N3sDVLks"
 
 
 variable "instance_name" {
