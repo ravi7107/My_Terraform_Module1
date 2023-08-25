@@ -3,7 +3,7 @@ variable "access_key" {
 }
 variable "secret_key" {
         description = "+I9v9DzOD/xTyPoLj4dvYPEF6R89tuj9N3sDVLks"
-
+}
 
 variable "instance_name" {
         description = "MyInstance1"
