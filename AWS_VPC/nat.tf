@@ -20,10 +20,12 @@ resource "aws_nat_gateway" "levelup_nat_gw" {
     cidr_block = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.levelup_nat_gw.id
   }
-
+  
   tags = {
     Name = "levlup-private"
   }
+  
+}
 
   #route association private
   resource "aws_route_table_association" "levelup_private_rta_1_a" {
