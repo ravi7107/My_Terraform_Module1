@@ -1,8 +1,13 @@
 #creat EC-2 instance 
+provider "aws" {
+  region = "us-east-2"
+  access_key = "AKIASAZ4HDPTMBYTXISE"
+  secret_key = "nMXnELXQ4YyAYahKBg3MEHdKPtI5MSvvF4aWncxl"
+}
+
 resource "aws_instance" "my_instance" {
   ami           = "ami-024e6efaf93d85776"  # Replace with Ubuntu AMI ID
   instance_type = "t2.micro"
-  #key_name = "deployer-key"
   subnet_id     = aws_subnet.levelup_vpc_public1.id
   vpc_security_group_ids = [aws_security_group.allow_levelup_ssh.id]
 
