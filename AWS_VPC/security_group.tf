@@ -1,26 +1,33 @@
-#security group for levelup vpc
-resource "aws_security_group" "allow_levelup_ssh" {
-  name        = "allow_levelup_ssh"
-  description = "Allow TLS inbound traffic"
-  vpc_id      = aws_vpc.levelup_vpc.id
+resource "aws_security_group" "custom-vpc-security-group" {
+  name          = "custom-vpc-security-group"
+  description   = "custom-vpc-security-group"
+  vpc_id        = aws_vpc.levelup_vpc.id
 
   ingress {
-    description      = "TCP from VPC"
-    from_port        = 22
-    to_port          = 22
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+    description = "custom-vpc-security-group"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
-  egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
+  ingress {
+    description = "Allow ssh access"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "Allow https access"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags = {
-    Name = "allow_levelup_ssh"
+    Name        = "Custom security group"
   }
 }
