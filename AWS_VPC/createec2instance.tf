@@ -1,7 +1,4 @@
-provider "aws" {
-  region = "us-east-2a"  # Change to your desired region
-}
-
+#creat EC-2 instance 
 resource "aws_key_pair" "deployer" {
   key_name   = "deployer-key"
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDlhDV5x/lv1ddNMBMQ0e3d5MvdFeU9QId9OvWlgO5haJL5R7Zm/9RG1sKWaQUvdJ46U79wsEmC07VIjxqnsxqUJvogGCdS7il3yTEGUZ86F1K/37wExuKRDtpKT8IMfgXFwOhMf109YzY1Gjo9HfEh4zUqPPaTbAHTIoSvZwK8Bq0G7rZ4FfVP8IgCSCSDyx9smdXSzlp5mbw2q0ahnUBnh7adc4o6GX8W1TjCxIDORKKQABbYtyxv+mb4yVxeRt7mFFqFviUDTysmgyqMCrqzAbK0T+qpI2e0BntIjWW5dHoX/GgNWeBhbiGshm6WMGT5Ps1yLfO6kiTW7EtM2ql5 Mykp-Aug"
