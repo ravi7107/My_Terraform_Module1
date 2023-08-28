@@ -1,14 +1,7 @@
 #creat EC-2 instance 
 resource "aws_key_pair" "deployer" {
   key_name   = "deployer-key"
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDlhDV5x/lv1ddNMBMQ0e3d5MvdFeU9QId9OvWlgO5haJL5R7Zm/9RG1sKWaQUvdJ46U79wsEmC07VIjxqnsxqUJvogGCdS7il3yTEGUZ86F1K/37wExuKRDtpKT8IMfgXFwOhMf109YzY1Gjo9HfEh4zUqPPaTbAHTIoSvZwK8Bq0G7rZ4FfVP8IgCSCSDyx9smdXSzlp5mbw2q0ahnUBnh7adc4o6GX8W1TjCxIDORKKQABbYtyxv+mb4yVxeRt7mFFqFviUDTysmgyqMCrqzAbK0T+qpI2e0BntIjWW5dHoX/GgNWeBhbiGshm6WMGT5Ps1yLfO6kiTW7EtM2ql5 Mykp-Aug"
-}
-
-resource "aws_security_group" "instance_sg" {
-  name_prefix = "instance-sg-"
-  vpc_id      = aws_vpc.levelup_vpc.id
-  
-  // Define inbound and outbound rules here
+  public_key = "hloMnwnopqBw3h9ZnRPycO3IBk+CbQac8okbGUNCCuM r.r.shete@gmail.com"
 }
 
 resource "aws_instance" "my_instance" {
