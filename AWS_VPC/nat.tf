@@ -12,6 +12,7 @@ resource "aws_nat_gateway" "levelup_nat_gw" {
   tags = {
     Name = "gw NAT"
   }
+}
 
   resource "aws_route_table" "levelup_private_rt" {
   vpc_id = aws_vpc.levelup_vpc.id
