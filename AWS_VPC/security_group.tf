@@ -2,7 +2,7 @@
 resource "aws_security_group" "allow_levelup_ssh" {
   name        = "allow_levelup_ssh"
   description = "Allow TLS inbound traffic"
-  vpc_id      = "aws_vpc.levelup_vpc.id"
+  vpc_id      = "aws_vpc.levelup_vpc"
 
   ingress {
     description      = "TCP from VPC"
