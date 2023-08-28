@@ -1,9 +1,11 @@
 #security group for levelup vpc
+depends_on = [aws_key_pair.MyKP]
+
 resource "aws_security_group" "allow_levelup_ssh" {
   name        = "allow_levelup_ssh"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.levelup_vpc.id
-  
+
   ingress {
     description      = "TCP from VPC"
     from_port        = 22
