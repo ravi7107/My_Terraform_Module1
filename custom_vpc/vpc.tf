@@ -53,7 +53,7 @@ resource "aws_subnet" "levelup_vpc_public3" {
 resource "aws_subnet" "levelup_vpc_private1" {
     vpc_id = aws_vpc.leveup_vpc.id
     cidr_block = "172.20.4.0/24"
-    map_customer_owned_ip_on_launch = "true"
+    map_customer_owned_ip_on_launch = "false"
     availability_zone = "us-east-1a"
 
     tags = {
@@ -65,7 +65,7 @@ resource "aws_subnet" "levelup_vpc_private1" {
 resource "aws_subnet" "levelup_vpc_private2" {
     vpc_id = aws_vpc.leveup_vpc.id
     cidr_block = "172.20.5.0/24"
-    map_customer_owned_ip_on_launch = "true"
+    map_customer_owned_ip_on_launch = "false"
     availability_zone = "us-east-1a"
 
     tags = {
@@ -77,7 +77,7 @@ resource "aws_subnet" "levelup_vpc_private2" {
 resource "aws_subnet" "levelup_vpc_private3" {
     vpc_id = aws_vpc.leveup_vpc.id
     cidr_block = "172.20.6.0/24"
-    map_customer_owned_ip_on_launch = "true"
+    map_customer_owned_ip_on_launch = "false"
     availability_zone = "us-east-1a"
 
     tags = {
