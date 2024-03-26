@@ -4,7 +4,7 @@ resource "aws_route_table" "route_table" {
 
   # since this is exactly the route AWS will create, the route will be adopted
   route {
-    cidr_block = aws_vpc.main.cidr_block
+    cidr_block = aws_vpc.route_table.cidr_block
     gateway_id = "local"
   }
 }
