@@ -1,41 +1,27 @@
-resource "aws_eip" "levelup_nat" {
-  domain = "vpc"
+resource "aws_route_table" "test" {
+  vpc_id = aws_vpc.test.id
 
-}
-
-resource "aws_nat_gateway" "levelup_nat_gw" {
-    allocation_id = aws_eip.levelup_nat.id
-    subnet_id = aws_subnet.levelup_vpc_public1.id
-    depends_on = [ aws_internet_gateway.levelup-gw ]
-  
-  tags = {
-    Name= "gw NAT"
+  # since this is exactly the route AWS will create, the route will be adopted
+  route {
+    cidr_block = "10.1.0.0/16"
+    gateway_id = "local"
   }
 }
 
-resource "aws_route_table" "levelup_private_rt" {
-  vpc_id = aws_vpc.levelup_vpc.id
+resource "aws_route_table" "test" {
+  vpc_id = aws_vpc.test.id
 
   route {
-    cidr_block = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.levelup_nat_gw.id
+    cidr_block           = aws_vpc.test.cidr_block
+    network_interface_id = aws_network_interface.test.id
   }
-  
-  tags = {
-    Name = "levlup-private"
-  }
-  }
+}
 
-  #route association private
-  resource "aws_route_table_association" "levelup_private_rta_1_a" {
-  subnet_id      = aws_subnet.levelup_vpc_private1.id
-  route_table_id = aws_route_table.levelup_private_rt.id
+resource "aws_subnet" "test" {
+  cidr_block = "10.1.1.0/24"
+  vpc_id     = aws_vpc.test.id
 }
-  resource "aws_route_table_association" "levelup_private_rta_1_b" {
-  subnet_id      = aws_subnet.levelup_vpc_private2.id
-  route_table_id = aws_route_table.levelup_private_rt.id
-}
-  resource "aws_route_table_association" "levelup_private_rta_1_c" {
-  subnet_id      = aws_subnet.levelup_vpc_private3.id
-  route_table_id = aws_route_table.levelup_private_rt.id
+
+resource "aws_network_interface" "test" {
+  subnet_id = aws_subnet.test.id
 }
