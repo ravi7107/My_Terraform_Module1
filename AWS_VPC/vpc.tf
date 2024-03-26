@@ -113,7 +113,7 @@ resource "aws_route_table_association" "levelup_public_2_a" {
   route_table_id = aws_route_table.levelup_public.id
 }
 
-resource "aws_route_table_association" "levelup_public_3_a" {
+.resource "aws_route_table_association" "levelup_public_3_a" {
   subnet_id      = aws_subnet.levelup_vpc_public3.id
   route_table_id = aws_route_table.levelup_public.id
 }
