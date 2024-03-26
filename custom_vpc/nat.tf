@@ -6,7 +6,7 @@ resource "aws_eip" "levelup_nat" {
 resource "aws_nat_gateway" "levelup_nat_gw" {
     allocation_id = aws_eip.levelup_nat
     subnet_id = aws_subnet.levelup_vpc_public1
-    depends_on = [ aws_internet_gateway.levelup_gw ]
+    depends_on = [ aws_internet_gateway.levelup-gw ]
   
   tags = {
     Name= "gw NAT"
