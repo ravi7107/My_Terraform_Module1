@@ -3,8 +3,17 @@ resource "aws_route_table" "test" {
 
   # since this is exactly the route AWS will create, the route will be adopted
   route {
-    cidr_block = "10.1.0.0/16"
-    gateway_id = "local"
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.gw.id
+  }
+  
+}
+
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "internet gateway"
   }
 }
 
