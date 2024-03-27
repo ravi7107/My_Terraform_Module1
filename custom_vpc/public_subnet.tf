@@ -15,3 +15,4 @@ resource "aws_subnet" "public_subnet_2" {
     Name = "public_subnet_2"
   }
 }
+

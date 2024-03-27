@@ -7,3 +7,13 @@ resource "aws_route_table" "test" {
     gateway_id = "local"
   }
 }
+
+resource "aws_route_table_association" "rt_association1" {
+  subnet_id      = aws_subnet.public_subnet_1.id
+  route_table_id = aws_route_table.test.id
+}
+
+resource "aws_route_table_association" "rt_association2" {
+  subnet_id      = aws_subnet.public_subnet_2.id
+  route_table_id = aws_route_table.test.id
+}
