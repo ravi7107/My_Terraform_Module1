@@ -1,5 +1,5 @@
 resource "aws_route_table" "test" {
-  vpc_id = aws_vpc.test.id
+  vpc_id = aws_vpc.main.id
 
   # since this is exactly the route AWS will create, the route will be adopted
   route {
