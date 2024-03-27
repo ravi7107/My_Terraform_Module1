@@ -14,9 +14,13 @@ resource "aws_internet_gateway" "gw" {
 
   tags = {
     Name = "internet gateway"
-  }
+  } 
 }
 
+resource "aws_internet_gateway_attachment" "igw_attachment" {
+  internet_gateway_id = aws_internet_gateway.igw_attachment.id
+  vpc_id              = aws_vpc.main.id
+}
 resource "aws_route_table_association" "rt_association1" {
   subnet_id      = aws_subnet.public_subnet_1.id
   route_table_id = aws_route_table.test.id
