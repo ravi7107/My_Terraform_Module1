@@ -2,7 +2,7 @@
 
 variable "AMIS" {
     type = string
-    default = us-east-1 = "ami-0c101f26f147fa7fd"
+    default = "ami-0c101f26f147fa7fd"
        
 }
 
