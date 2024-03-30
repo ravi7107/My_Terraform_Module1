@@ -27,7 +27,7 @@ resource "aws_db_instance" "maria_db_instance" {
   db_name              = "mariadb"
   engine               = "mariadb"
   engine_version       = "10.6"
-  instance_class       = "db.t2.micro"
+  instance_class       = "db.t3.micro"
   username             = "mariadb"
   password             = "mariadb123"
   parameter_group_name = "aws_subnet.mariadb_instance.mariadb10.6"
