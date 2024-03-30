@@ -4,7 +4,6 @@ resource "aws_instance" "first_instance" {
   availability_zone       ="us-east-2a" 
   key_name = "var.levelup_key"
 
-  tags = "first instance"
 
 }
 
