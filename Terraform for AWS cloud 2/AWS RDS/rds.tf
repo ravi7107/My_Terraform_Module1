@@ -13,7 +13,7 @@ resource "aws_db_subnet_group" "mariadb_subnet_group" {
 resource "aws_db_parameter_group" "maria_db_parameters" {
   name   = "mariadb"
   family = "mariadb10.6"
-
+}
   parameter {
     name  = "log_connections"
     value = "1"
