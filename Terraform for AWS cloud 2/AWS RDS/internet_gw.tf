@@ -1,8 +1,5 @@
-#create internet gateway
+#create internet gateway changes
 resource "aws_internet_gateway" "levelup_igw" {
     vpc_id = aws_vpc.main.id
-    
+
 }
- tags{
-    Name= "levelup_igw"
- }
