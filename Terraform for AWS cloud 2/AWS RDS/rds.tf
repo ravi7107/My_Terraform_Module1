@@ -2,14 +2,14 @@
 
 data "aws_db_subnet_group" "database" {
   name = "my-test-database-subnet-group"
-  description ="Amzon RDS subnet group"
-  subnet_ids =[aws_subnet.private_subnet_1.id,aws_subnet.private_subnet_2.id]
+ # description ="Amzon RDS subnet group"
+ # subnet_ids =[aws_subnet.private_subnet_1.id,aws_subnet.private_subnet_2.id]
 }
 
 #RDS parameters
 
 resource "aws_db_parameter_group" "maria_db_parameters" {
-  name   = "maria DB parameters group"
+  name   = "maria_db_parameters_group"
   family = "postgres13"
 
   parameter {
