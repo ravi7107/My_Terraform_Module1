@@ -13,10 +13,12 @@ resource "aws_db_subnet_group" "mariadb_subnet_group" {
 resource "aws_db_parameter_group" "maria_db_parameters" {
   name   = "mariadb"
   family = "mariadb10.6"
+  
 
   parameter{
     name  = "log_connections"
     value = "1"
+    
   }
 }
    
@@ -32,6 +34,7 @@ resource "aws_db_instance" "maria_db_instance" {
   password             = "mariadb123"
   parameter_group_name = "aws_subnet.mariadb_instance.mariadb10.6"
   skip_final_snapshot  = true
+  availability_zone="us-east-1a,ua-east-2b, us-east-2c"
 
   tags = {
     Name="levelup_maria_db_instance"
