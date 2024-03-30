@@ -1,29 +1,25 @@
 #RDS resources
+#This is a private subnet in vpc
+resource "aws_db_subnet_group" "mariadb_subnet_group" {
+  name = "mariadb-subnet"
+  description = "Amazon RDS subnet group"
+  subnet_ids = [aws_subnet.private_subnet_1.id, aws_subnet.private_subnet_2.id]
 
-data "aws_db_subnet_group" "database" {
-  name = "my-test-database-subnet-group"
- # description ="Amzon RDS subnet group"
- # subnet_ids =[aws_subnet.private_subnet_1.id,aws_subnet.private_subnet_2.id]
+
 }
 
 #RDS parameters
 
 resource "aws_db_parameter_group" "maria_db_parameters" {
   name   = "mariadb"
-  family = "postgres13"
+  family = "mariadb10.6"
 
   parameter {
     name  = "log_connections"
     value = "1"
   }
 
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
 #RDS instance properties
-
 resource "aws_db_instance" "maria_db_instance" {
   allocated_storage    = 10
   db_name              = "mariadb"
