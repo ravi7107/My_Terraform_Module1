@@ -1,9 +1,10 @@
 #RDS resources
 #This is a private subnet in vpc
 resource "aws_db_subnet_group" "mariadb_subnet_group" {
-  name = "mariadb-subnet"
-  description = "Amazon RDS subnet group"
-  subnet_ids = [aws_subnet.private_subnet_1.id, aws_subnet.private_subnet_2.id]
+  name       = "mariadb-subnet"
+  subnet_ids = ["subnet-05345aa78192b71c8", "subnet-00afeb5b56e2b7567"]  # Replace these with your subnet IDs
+}
+
 
 
 }
@@ -14,11 +15,10 @@ resource "aws_db_parameter_group" "maria_db_parameters" {
   name   = "mariadb"
   family = "mariadb10.6"
   
-
-  parameter{
+ parameter {
     name  = "log_connections"
     value = "1"
-    
+    apply_method = "pending-reboot"
   }
 }
    
