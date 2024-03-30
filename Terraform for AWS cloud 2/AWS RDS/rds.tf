@@ -34,7 +34,7 @@ resource "aws_db_instance" "maria_db_instance" {
   password             = "mariadb123"
   parameter_group_name = "aws_subnet.mariadb_instance.mariadb10.6"
   skip_final_snapshot  = true
-  availability_zone="us-east-1a,ua-east-2b, us-east-2c"
+  availability_zone="us-east-1,ua-west-2"
 
   tags = {
     Name="levelup_maria_db_instance"
