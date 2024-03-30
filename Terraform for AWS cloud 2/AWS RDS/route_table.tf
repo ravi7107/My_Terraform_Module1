@@ -10,7 +10,7 @@ resource "aws_route_table" "test" {
 }
 
 resource "aws_internet_gateway_attachment" "igw_attachment" {
-  internet_gateway_id = aws_internet_gateway.igw_attachment.id
+  internet_gateway_id = aws_internet_gateway.levelup_igw.id
   vpc_id              = aws_vpc.main.id
 }
 resource "aws_route_table_association" "rt_association1" {
