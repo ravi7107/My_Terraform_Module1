@@ -9,7 +9,7 @@ data "aws_db_subnet_group" "database" {
 #RDS parameters
 
 resource "aws_db_parameter_group" "maria_db_parameters" {
-  name   = "maria_db_parameters_group"
+  name   = "mariadb"
   family = "postgres13"
 
   parameter {
