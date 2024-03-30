@@ -4,14 +4,10 @@ variable "AMIS" {
        
 }
 
-variable "PATH_TO_PRIVATE_KEY" {
+variable "levelup_key" {
   default = "levelup_key"
 }
 
-variable "PATH_TO_PUBLIC_KEY" {
+variable "levelup_key_pub" {
   default = "levelup_key.pub"
-}
-
-variable "INSTANCE_USERNAME" {
-  default = "ubuntu"
 }
