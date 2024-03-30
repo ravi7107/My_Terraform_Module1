@@ -12,11 +12,7 @@ resource "aws_db_parameter_group" "maria_db_parameters" {
   name   = "mariadb"
   family = "mariadb10.6"
   
- parameter {
-    name  = "maria_db_parameters"
-    value = "1"
-    apply_method = "pending-reboot"
-  }
+
 }
    
 
@@ -31,6 +27,7 @@ resource "aws_db_instance" "maria_db_instance" {
   password             = "mariadb123"
   parameter_group_name = "aws_subnet.mariadb_instance.mariadb10.6"
   skip_final_snapshot  = true
+  availability_zone     = ["us-east-2c","us-west-2b"]
 
   tags = {
     Name="levelup_maria_db_instance"
