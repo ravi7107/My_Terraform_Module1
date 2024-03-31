@@ -17,15 +17,6 @@ resource "aws_db_instance" "default" {
 }
 
 #Provision RDS instance in a VPC network
-resource "aws_db_subnet_group" "my_db_subnet_group" {
-  name = "my-db-subnet-group"
-  subnet_ids = [aws_subnet.private_subnet_1.id, aws_subnet.private_subnet_2.id]
-
-  tags = {
-    Name = "My DB Subnet Group"
-  }
-}
-
 #subnet group
 
 resource "aws_security_group" "rds_sg" {
