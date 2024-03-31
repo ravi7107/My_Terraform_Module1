@@ -13,6 +13,7 @@ resource "aws_db_instance" "default" {
   db_subnet_group_name = aws_db_subnet_group.my_db_subnet_group.name
 
   skip_final_snapshot = true
+  multi_az = true
 }
 
 #Provision RDS instance in a VPC network
