@@ -27,22 +27,11 @@ resource "aws_db_subnet_group" "my_db_subnet_group" {
 }
 
 #subnet group
-resource "aws_subnet" "subnet_a" {
-  vpc_id            = aws_vpc.my_vpc.id
-  cidr_block        = "10.0.1.0/24"
-  availability_zone = "eu-central-1a"
-}
-
-resource "aws_subnet" "subnet_b" {
-  vpc_id            = aws_vpc.my_vpc.id
-  cidr_block        = "10.0.2.0/24"
-  availability_zone = "eu-central-1b"
-}
 
 resource "aws_security_group" "rds_sg" {
   name_prefix = "rds-"
 
-  vpc_id = aws_vpc.my_vpc.id
+  vpc_id = aws_vpc.main.id
 
   # Add any additional ingress/egress rules as needed
   ingress {
@@ -55,7 +44,7 @@ resource "aws_security_group" "rds_sg" {
 
 resource "aws_db_subnet_group" "my_db_subnet_group" {
   name       = "my-db-subnet-group"
-  subnet_ids = [aws_subnet.subnet_a.id, aws_subnet.subnet_b.id]
+  subnet_ids = [aws_subnet.private_subnet_1.id, aws_subnet.private_subnet_2.id]
 
   tags = {
     Name = "My DB Subnet Group"
