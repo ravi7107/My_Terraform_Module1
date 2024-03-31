@@ -1,35 +1,26 @@
-#RDS resources
-#This is a private subnet in vpc
-resource "aws_db_subnet_group" "mariadb_subnet_group" {
-  name       = "mariadb-subnet"
-  subnet_ids = ["subnet-05345aa78192b71c8", "subnet-00afeb5b56e2b7567"]  # Replace these with your subnet IDs
+#Configure basic RDS instance
+resource "aws_db_instance" "default" {
+  allocated_storage = 10
+  storage_type = "gp2"
+  engine = "mysql"
+  engine_version = "5.7"
+  instance_class = "db.t2.micro"
+  identifier = "mydb"
+  username = "dbuser"
+  password = "dbpassword"
+
+  vpc_security_group_ids = [aws_security_group.allow_mariadb.id]
+  db_subnet_group_name = aws_db_subnet_group.my_db_subnet_group.name
+
+  skip_final_snapshot = true
 }
 
-
-#RDS parameters
-
-resource "aws_db_parameter_group" "maria_db_parameters" {
-  name   = "mariadb"
-  family = "mariadb10.6"
-  
-
-}
-   
-
-#RDS instance properties
-resource "aws_db_instance" "maria_db_instance" {
-  allocated_storage    = 10
-  db_name              = "mariadb"
-  engine               = "mariadb"
-  engine_version       = "10.6"
-  instance_class       = "db.t3.micro"
-  username             = "mariadb"
-  password             = "mariadb123"
-  parameter_group_name = "aws_subnet.mariadb_instance.mariadb10.6"
-  skip_final_snapshot  = true
-  availability_zone     = "us-east-2c,us-west-2b"
+#Provision RDS instance in a VPC network
+resource "aws_db_subnet_group" "my_db_subnet_group" {
+  name = "my-db-subnet-group"
+  subnet_ids = [aws_subnet.private_subnet_1.id, aws_subnet.private_subnet_2.id]
 
   tags = {
-    Name="levelup_maria_db_instance"
+    Name = "My DB Subnet Group"
   }
 }
