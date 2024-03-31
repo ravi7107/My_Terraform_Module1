@@ -9,11 +9,10 @@ resource "aws_db_instance" "default" {
   username = "dbuser"
   password = "dbpassword"
 
-  vpc_security_group_ids = [aws_security_group.allow_mariadb.id]
+  vpc_security_group_ids = [aws_security_group.rds_sg]
   db_subnet_group_name = aws_db_subnet_group.my_db_subnet_group.name
 
   skip_final_snapshot = true
-  multi_az = true
 }
 
 #Provision RDS instance in a VPC network
