@@ -1,42 +1,67 @@
-#Configure basic RDS instance
 resource "aws_db_instance" "default" {
-  allocated_storage = 10
-  storage_type = "gp2"
-  engine = "mysql"
-  engine_version = "5.7"
-  instance_class = "db.t3.small"
-  identifier = "mydb"
-  username = "dbuser"
-  password = "dbpassword"
+  allocated_storage = 20
+  storage_type      = "gp2"
+  engine            = "mysql"
+  engine_version    = "5.7"
+  instance_class    = "db.t3.small"
+  identifier        = "mydb"
+  username          = "dbuser"
+  password          = "dbpassword"
 
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
-  db_subnet_group_name = aws_db_subnet_group.my_db_subnet_group.name
+  db_subnet_group_name   = aws_db_subnet_group.my_db_subnet_group.name
 
-  skip_final_snapshot = true
+  backup_retention_period      = 7
+  backup_window                = "03:00-04:00"
+  maintenance_window           = "mon:04:00-mon:04:30"
+  skip_final_snapshot          = false
+  final_snapshot_identifier    = "my-db"
+  monitoring_interval          = 60
+  monitoring_role_arn          = aws_iam_role.rds_monitoring_role.arn
+  performance_insights_enabled = true
+  # Enable storage encryption
+  storage_encrypted = true
+  # Specify the KMS key ID for encryption (replace with your own KMS key ARN)
+  kms_key_id = aws_kms_key.levelup_key.arn
+
+  parameter_group_name = aws_db_parameter_group.my_db_pmg.name
 }
 
-#Provision RDS instance in a VPC network
-#subnet group
 
-resource "aws_security_group" "rds_sg" {
-  name_prefix = "rds-"
+ 
+resource "aws_db_parameter_group" "my_db_pmg" {
+  name   = "mysql"
+  family = "mysql5.7"
 
-  vpc_id = aws_vpc.main.id
+  parameter {
+    name  = "connect_timeout"
+    value = "15"
+  }
 
-  # Add any additional ingress/egress rules as needed
-  ingress {
-    from_port   = 3306
-    to_port     = 3306
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+  lifecycle {
+    create_before_destroy = true
   }
 }
 
-resource "aws_db_subnet_group" "my_db_subnet_group" {
-  name       = "my-db-subnet-group"
-  subnet_ids = [aws_subnet.private_subnet_1.id, aws_subnet.private_subnet_2.id]
+resource "aws_iam_role" "rds_monitoring_role" {
+  name = "rds-monitoring-role"
 
-  tags = {
-    Name = "My DB Subnet Group"
-  }
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Action = "sts:AssumeRole",
+        Effect = "Allow",
+        Principal = {
+          Service = "monitoring.rds.amazonaws.com"
+        }
+      }
+    ]
+  })
+}
+
+resource "aws_iam_policy_attachment" "rds_monitoring_attachment" {
+  name       = "rds-monitoring-attachment"
+  roles      = [aws_iam_role.rds_monitoring_role.name]
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonRDSEnhancedMonitoringRole"
 }
