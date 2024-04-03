@@ -10,10 +10,15 @@ variable "region" {
 variable "instance_type" {
     default = "t2.micro"
   
+# variables.tf
+
+variable "levelup_key" {
+  description = "Name of the key pair for the AWS EC2 instance"
+  default= "levelup_key"
 }
 
-variable "levelup_kwy" {
-  default = "levelup_key"
+variable "key_name" {
+  description = "Name of the key pair for AWS Key Pair resource"
 }
 
 variable "levelup_key_pub" {
