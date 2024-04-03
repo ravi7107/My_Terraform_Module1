@@ -9,7 +9,7 @@ resource "aws_instance" "Server-1" {
   }
 }
 
-resource "aws_key_pair" "levelup_key" {
-  key_name   = var.levelup_key
+resource "aws_key_pair" "my_key" {
+  key_name   = var.key_name
   public_key = file("${abspath(path.cwd)}/levelup_key.pub")
 }
