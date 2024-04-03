@@ -6,9 +6,9 @@ resource "aws_key_pair" "levelup_key" {
 
 #Create AWS Instance
 resource "aws_instance" "MyFirstInstnace" {
-  ami           = lookup(var.AMIS, var.AWS_REGION)
+  ami           = lookup(var.AMIS)
   instance_type = "t2.micro"
-  availability_zone = "us-east-2a"
+  availability_zone = "us-east-1a"
   key_name      = aws_key_pair.levelup_key.key_name
 
   user_data = file("installapache.sh")
