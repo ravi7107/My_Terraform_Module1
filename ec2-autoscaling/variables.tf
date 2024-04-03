@@ -4,7 +4,11 @@ variable "ami_id" {
 }
 
 variable "region" {
-    default = "us-east-2a"
+    default = "us-east-2a" 
+}
+
+variable "instance_type" {
+    default = "t2.micro"
   
 }
 

@@ -8,3 +8,8 @@ resource "aws_instance" "Server-1" {
     Name = "Server-1"
   }
 }
+
+resource "aws_key_pair" "levelup_key" {
+  key_name   = var.levelup_key
+  public_key = file("${abspath(path.cwd)}/levelup_key.pub")
+}
