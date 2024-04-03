@@ -9,7 +9,7 @@ variable "region" {
 
 variable "instance_type" {
     default = "t2.micro"
-  
+}
 # variables.tf
 
 variable "levelup_key" {
