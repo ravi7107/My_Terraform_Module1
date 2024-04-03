@@ -12,7 +12,7 @@ variable "instance_type" {
   
 }
 
-variable "levelup_key" {
+variable "key_name" {
   default = "levelup_key"
 }
 
