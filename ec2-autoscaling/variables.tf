@@ -1,4 +1,4 @@
-variable "multi_az_config" {
+variable "ami_id" {
   description = "Specify configurations for multiple availability zones"
   type        = map(object({
     instance_type  = string
