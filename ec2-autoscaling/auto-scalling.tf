@@ -1,10 +1,11 @@
 #AutoScaling Launch Configuration
-resource "aws_launch_configuration" "levelup-launchconfig" {
+resource "aws_launch_configuration" "levelup_launchconfig" {
   name_prefix     = "levelup-launchconfig"
-  image_id = var.ami_id
+  image_id        = var.ami_id[terraform.workspace]  # Assuming ami_id is a map of maps, and each key is a region
   instance_type   = "t2.micro"
   key_name        = aws_key_pair.levelup_key.key_name
 }
+
 
 #Generate Key
 resource "aws_key_pair" "levelup_key" {
