@@ -4,6 +4,7 @@ variable "ami_id" {
   default     = {
      "us-east-2" = "ami-0900fe555666598a2"
      "us-west-1" = "ami-0b990d3cfca306617"
+      "default" =  "ami-0900fe555666598a2"
   }
 }
 
