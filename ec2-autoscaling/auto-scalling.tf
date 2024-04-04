@@ -2,7 +2,7 @@
 resource "aws_launch_configuration" "levelup_launch_config" {
     name_prefix = "levelup_launch_config"
     image_id = lookup(var.ami_id, var.region)
-    instance_type = "t2.micro"
+    instance_type = var.instance_type
     key_name = aws_key_pair.levelup_key.key_name
 }
 
