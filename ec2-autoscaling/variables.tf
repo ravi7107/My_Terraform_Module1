@@ -9,9 +9,8 @@ variable "ami_id" {
 
 variable "region" {
     type        = map
-  default     = {
-     ["us-east-2" ,"us-west-2"]
-  } 
+  default     = ["us-east-2" ,"us-west-2"]
+
 }
 
 variable "instance_type" {
