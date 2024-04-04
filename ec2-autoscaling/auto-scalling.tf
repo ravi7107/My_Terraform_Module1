@@ -35,14 +35,16 @@ resource "aws_autoscaling_group" "levelup_autoscalling" {
 }
 
 #Autoscalling configuration policy- Scaling alarm
-resource "aws_autoscaling_policy" "levelup_cpu-policy" {
-    autoscaling_group_name = aws_autoscaling_group.levelup_autoscalling.name
-    adjustment_type = "ChangeInCapacity"
-    scaling_adjustment = "1"
-    cooldown ="200"
-    policy_type = "SimpleScaling"
-
+resource "aws_autoscaling_policy" "levelup_cpu_policy" {
+  name                   = "levelup-cpu-policy"
+  policy_name            = "levelup-cpu-policy"
+  autoscaling_group_name = aws_autoscaling_group.levelup_autoscaling.name
+  adjustment_type        = "ChangeInCapacity"
+  scaling_adjustment     = 1
+  cooldown               = 200
+  policy_type            = "SimpleScaling"
 }
+
 
 #Autoscalling cloud watch monitoring
 
