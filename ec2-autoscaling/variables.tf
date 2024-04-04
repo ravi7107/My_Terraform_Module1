@@ -11,7 +11,7 @@ variable "region" {
   type    = map(string)
   default = {
     "us-east-2" = "East US 2"
-    "us-west-2" = "West US 2"
+    "us-west-1" = "West US 1"
   }
 }
 
