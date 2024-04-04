@@ -38,7 +38,7 @@ resource "aws_autoscaling_group" "levelup_autoscalling" {
 resource "aws_autoscaling_policy" "levelup_cpu_policy" {
   name                   = "levelup-cpu-policy"
   policy_name            = "levelup-cpu-policy"
-  autoscaling_group_name = aws_autoscaling_group.levelup_autoscaling.name
+  autoscaling_group_name = aws_autoscaling_group.levelup_autoscalling.name
   adjustment_type        = "ChangeInCapacity"
   scaling_adjustment     = 1
   cooldown               = 200
