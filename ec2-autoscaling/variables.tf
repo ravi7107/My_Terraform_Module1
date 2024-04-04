@@ -2,8 +2,8 @@ variable "ami_id" {
   description = "Specify the instance ami that you want to use for the instance."
   type        = map
   default     = {
-     "us-east-2" = "ami-098f16afa9edf40be"
-     "us-west-2" = "ami-0f38562b9d4de0dfe"
+     "us-east-2a" = "ami-098f16afa9edf40be"
+     "us-west-2b" = "ami-0f38562b9d4de0dfe"
   }
 }
 
