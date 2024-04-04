@@ -14,7 +14,7 @@ resource "aws_autoscaling_group" "levelup_autoscalling" {
     launch_configuration = aws_launch_configuration.levelup_launch_config.name
     min_size = 1
     max_size = 2
-    health_check_grace_period = 200z
+    health_check_grace_period = 200
     health_check_type = "EC2"
     force_delete = "true"
 
