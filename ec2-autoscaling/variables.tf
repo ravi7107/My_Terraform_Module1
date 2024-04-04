@@ -8,9 +8,11 @@ variable "ami_id" {
 }
 
 variable "region" {
-    type        = map
-  default     = ["us-east-2" ,"us-west-2"]
-
+  type    = map(string)
+  default = {
+    "us-east-2" = "East US 2"
+    "us-west-2" = "West US 2"
+  }
 }
 
 variable "instance_type" {
