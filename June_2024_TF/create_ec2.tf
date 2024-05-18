@@ -22,6 +22,15 @@ resource "aws_subnet" "private" {
     }
 }
 
+# Create an Internet Gateway
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.omniactives.id
+
+  tags = {
+    Name = "main_igw"
+  }
+}  
+
 #create a route table
 resource "aws_route_table" "main_rt" {
     vpc_id = aws_vpc.omniactives.id
@@ -29,6 +38,7 @@ resource "aws_route_table" "main_rt" {
     route = {
 
         cidr_block = "0.0.0.0/0"
+        Gateway_id = aws_internet_gateway.id
         
     }
 
@@ -44,6 +54,7 @@ resource "aws_route_table_association" "name" {
     route_table_id = aws_route_table.main_rt.id
   
 }
+
 
 #create a security group
 resource "aws_security_group" "private_sg" {
