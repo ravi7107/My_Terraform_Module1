@@ -1,0 +1,21 @@
+---
+- name: Uninstall nginx
+  hosts: aws_ec2
+  become: yes
+
+  tasks:
+    - name: Ensure nginx is stopped
+      service:
+        name: nginx
+        state: stopped
+        enabled: no
+
+    - name: Ensure nginx is uninstalled
+      apt:
+        name: nginx
+        state: absent
+
+    - name: Remove nginx configuration directory
+      file:
+        path: /etc/nginx
+        state: absent

@@ -1,0 +1,16 @@
+---
+- name: This playbook will install nginx
+  hosts: aws_ec2
+  become: yes
+
+  tasks:
+    - name: Ensure nginx is installed
+      yum:
+        name: nginx
+        state: present
+
+    - name: Ensure nginx is started and enabled
+      service:
+        name: nginx
+        state: started
+        enabled: yes
