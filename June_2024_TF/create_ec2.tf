@@ -82,7 +82,7 @@ resource "aws_security_group" "private_sg" {
 }
 
 # Create an EC2 Instance
-resource "aws_instance" "tf_1" {
+resource "aws_instance" "instance1" {
   ami             = "ami-09040d770ffe2224f"  # Ensure this AMI ID is valid in your chosen region
   instance_type   = "t2.micro"
   subnet_id       = aws_subnet.private.id
