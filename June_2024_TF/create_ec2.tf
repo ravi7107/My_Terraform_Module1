@@ -86,7 +86,7 @@ resource "aws_instance" "instance1" {
   ami             = "ami-09040d770ffe2224f"  # Ensure this AMI ID is valid in your chosen region
   instance_type   = "t2.micro"
   subnet_id       = aws_subnet.private.id
-  security_groups = [aws_security_group.private_sg.name]
+  security_groups = [aws_security_group.private_sg.id]
 
   tags = {
     Name = "main_instance"
