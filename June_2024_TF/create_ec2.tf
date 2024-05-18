@@ -1,25 +1,25 @@
+# Specify the provider
 provider "aws" {
-    region = "us-east-2" 
-  
+  region = "us-east-2"
 }
-#craete a VPC
+
+# Create a VPC
 resource "aws_vpc" "omniactives" {
-    cidr_block = "10.0.0.0/16"
+  cidr_block = "10.0.0.0/16"
 
-    tags = {
-        Name = "omniactives"
-    }
-  
+  tags = {
+    Name = "omniactives"
+  }
 }
 
-#craeete a subnet
+# Create a Subnet
 resource "aws_subnet" "private" {
-    vpc_id = aws_vpc.omniactives.id
-    cidr_block = "10.0.1.0/24"
+  vpc_id     = aws_vpc.omniactives.id
+  cidr_block = "10.0.1.0/24"
 
-    tags = {
-      Name = "private_subnet1"
-    }
+  tags = {
+    Name = "private_subnet1"
+  }
 }
 
 # Create an Internet Gateway
@@ -29,76 +29,71 @@ resource "aws_internet_gateway" "igw" {
   tags = {
     Name = "main_igw"
   }
-}  
+}
 
-#create a route table
+# Create a Route Table
 resource "aws_route_table" "main_rt" {
-    vpc_id = aws_vpc.omniactives.id
+  vpc_id = aws_vpc.omniactives.id
 
-    route = {
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
 
-        cidr_block = "0.0.0.0/0"
-        Gateway_id = aws_internet_gateway.id
-        
-    }
-
-    tags = {
-      Name = "main_rt"
-    }
-  
+  tags = {
+    Name = "main_rt"
+  }
 }
 
-#Associate the route table with the subnet
+# Associate the Route Table with the Subnet
 resource "aws_route_table_association" "name" {
-    subnet_id = aws_subnet.private.id
-    route_table_id = aws_route_table.main_rt.id
-  
+  subnet_id      = aws_subnet.private.id
+  route_table_id = aws_route_table.main_rt.id
 }
 
-
-#create a security group
+# Create a Security Group
 resource "aws_security_group" "private_sg" {
-    vpc_id = aws_vpc.omniactives.id
+  vpc_id = aws_vpc.omniactives.id
 
-    ingress {
-        from_port = 22
-        to_port = 22
-        protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-    }
-  
-    ingress {
-        from_port = 80
-        to_port = 80
-        protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
-        
-    }
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-    egress {
-        from_port = 0
-        to_port = 0
-        protocol = "-1"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-    tags = {
-        Name = "main_security_group"
-    }
+  tags = {
+    Name = "main_security_group"
+  }
 }
 
-#create an EC2 instance
-
+# Create an EC2 Instance
 resource "aws_instance" "tf_1" {
-    ami = "ami-09040d770ffe2224f"
-    instance_type = "t2.micro"
-    subnet_id = aws_subnet.private.id
-    security_groups = [aws_security_group.private_sg.name]
+  ami             = "ami-09040d770ffe2224f"  # Ensure this AMI ID is valid in your chosen region
+  instance_type   = "t2.micro"
+  subnet_id       = aws_subnet.private.id
+  security_groups = [aws_security_group.private_sg.name]
 
-    tags = {
-      name = "main_instance"
-    }
-  
+  tags = {
+    Name = "main_instance"
+  }
 }
 
+# Output the instance public IP
+output "instance_public_ip" {
+  value = aws_instance.tf_1.public_ip
+}
