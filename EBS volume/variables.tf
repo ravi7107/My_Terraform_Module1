@@ -27,7 +27,7 @@ variable "availability_zone" {
   
 }
 
-variable "key_name" {
+variable "level_up2" {
   description = "The name of the key pair to use for the instance"
   type = string
   default = "level_up2"
