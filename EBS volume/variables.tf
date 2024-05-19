@@ -1,14 +1,39 @@
-
-
-variable "AMIS" {
-    type = map
-    default = {
-        us-east-1 = "ami-0f40c8f97004632f9"
-        us-east-2 = "ami-05692172625678b4e"
-        us-west-2 = "ami-0352d5a37fb4f603f"
-        us-west-1 = "ami-0f40c8f97004632f9"
-    }
+variable "AWS_REGION" {
+    description = "AWS region to define to create AWS resources"
+    type = string
+    default = "us-east-2"
 }
+
+variable "instance_type" {
+  description = "AWS instance type to create EC2 instance"
+  type = string
+  default = "t2.micro"
+}
+variable "AMIS" {
+    description = "AMI to use for instance"
+    type = string
+    default = "ami-09040d770ffe2224f"
+}
+
+variable "volume_size" {
+  description = "The size of the EBS voulume in Gigabytes"
+  type = number
+  default = 10
+}
+variable "availability_zone" {
+  description = "AWS availibility zone for instance"
+  type = string
+  default = "us-east-2"
+  
+}
+
+variable "key_name" {
+  description = "The name of the key pair to use for the instance"
+  type = string
+  default = "level_up2"
+  
+}
+
 
 variable "PATH_TO_PRIVATE_KEY" {
   default = "levelup_key"
