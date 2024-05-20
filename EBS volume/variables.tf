@@ -1,7 +1,7 @@
 variable "AWS_REGION" {
     description = "AWS region to define to create AWS resources"
     type = string
-    default = "us-east-1"
+    default = "ap-south-1"
 }
 
 variable "instance_type" {
@@ -12,7 +12,7 @@ variable "instance_type" {
 variable "AMIS" {
     description = "AMI to use for instance"
     type = string
-    default = "ami-09040d770ffe2224f"
+    default = "ami-0cc9838aa7ab1dce7"
 }
 
 variable "volume_size" {
