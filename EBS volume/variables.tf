@@ -23,7 +23,7 @@ variable "volume_size" {
 variable "availability_zone" {
   description = "AWS availibility zone for instance"
   type = string
-  default = "us-east-2"
+  default = "ap-south-1a"
   
 }
 
