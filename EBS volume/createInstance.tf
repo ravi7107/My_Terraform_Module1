@@ -21,7 +21,7 @@ resource "aws_ebs_volume" "example-1" {
 }
 
 resource "aws_volume_attachment" "example" {
-    device_name = "/dev/sdh7107"
+    device_name = "/dev/sdh"
     volume_id = aws_ebs_volume.example-1.id
     instance_id = aws_instance.example-1.id
     depends_on = [ aws_instance.example-1 ]
