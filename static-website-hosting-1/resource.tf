@@ -49,26 +49,10 @@ resource "aws_s3_bucket_policy" "public_read_access" {
 EOF
 }
 
-resource "aws_route53_zone" "main" {
-  name = var.domain_name
-}
-
 resource "aws_route53_record" "www" {
-  zone_id = aws_route53_zone.main.zone_id
-  name    = "www.${var.domain_name}"
+  zone_id = aws_route53_zone.primary.zone_id
+  name    = "http://quickshifts.in/"
   type    = "A"
-
- 
-}
-
-resource "aws_route53_record" "root" {
-  zone_id = aws_route53_zone.main.zone_id
-  name    = var.domain_name
-  type    = "A"
-
-  alias {
-    name                   = aws_s3_bucket.bucket_1.website_endpoint
-    zone_id                = aws_s3_bucket.bucket_1.hosted_zone_id
-    evaluate_target_health = false
-  }
+  ttl     = 300
+  records = [aws_eip.lb.public_ip]
 }
