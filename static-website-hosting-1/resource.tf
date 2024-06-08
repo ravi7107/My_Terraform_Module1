@@ -1,16 +1,3 @@
-variable "region" {
-  default = "us-east-1"
-}
-
-variable "domain_name" {
-  description = "The domain name to associate with this site"
-  type        = string
-}
-
-provider "aws" {
-  region = var.region
-}
-
 resource "aws_s3_bucket" "bucket_1" {
   bucket = "web-bucket-080624"
 
@@ -32,14 +19,14 @@ resource "aws_s3_bucket_public_access_block" "bucket_1" {
 resource "aws_s3_object" "index" {
   bucket       = aws_s3_bucket.bucket_1.bucket
   key          = "index.html"
-  source       = "path/to/your/index.html"  # Update to the correct path
+  source       = "/home/ubuntu/My_Terraform_Module1/static-website-hosting-1/index.html"  # Update to the correct path
   content_type = "text/html"
 }
 
 resource "aws_s3_object" "error" {
   bucket       = aws_s3_bucket.bucket_1.bucket
   key          = "error.html"
-  source       = "path/to/your/error.html"  # Update to the correct path
+  source       = "/home/ubuntu/My_Terraform_Module1/static-website-hosting-1/error.html"  # Update to the correct path
   content_type = "text/html"
 }
 
