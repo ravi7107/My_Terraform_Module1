@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "bucket_1" {
-  bucket = "web-bucket-080624"
+  bucket = "web-bucket1-080624"
 
   website {
     index_document = "index.html"
@@ -58,11 +58,7 @@ resource "aws_route53_record" "www" {
   name    = "www.${var.domain_name}"
   type    = "A"
 
-  alias {
-    name                   = aws_s3_bucket.bucket_1.website_endpoint
-    zone_id                = aws_s3_bucket.bucket_1.hosted_zone_id
-    evaluate_target_health = false
-  }
+ 
 }
 
 resource "aws_route53_record" "root" {
