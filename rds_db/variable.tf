@@ -43,3 +43,27 @@ variable "db_backup_retention_period" {
   type        = number
   default     = 7
 }
+
+variable "lambda_function_name" {
+  description = "The name of the Lambda function"
+  type        = string
+  default     = "storeUserDataFunction"
+}
+
+variable "lambda_handler" {
+  description = "The handler for the Lambda function"
+  type        = string
+  default     = "index.handler"
+}
+
+variable "lambda_runtime" {
+  description = "The runtime for the Lambda function"
+  type        = string
+  default     = "nodejs14.x"
+}
+
+variable "lambda_role_name" {
+  description = "The name of the IAM role for Lambda"
+  type        = string
+  default     = "lambda-execution-role"
+}
