@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "website_bucket" {
-  bucket = "web-bucket2-080624"
+  bucket = "web-bucket-${var.region}"
 }
 
 resource "aws_s3_bucket_public_access_block" "website_bucket" {
@@ -23,20 +23,6 @@ resource "aws_s3_bucket_website_configuration" "website_bucket" {
   }
 }
 
-resource "aws_s3_object" "index" {
-  bucket       = aws_s3_bucket.website_bucket.bucket
-  key          = "index.html"
-  source       = "/home/ubuntu/My_Terraform_Module1/static-website-hosting-1/index.html"  # Update to the correct path
-  content_type = "text/html"
-}
-
-resource "aws_s3_object" "error" {
-  bucket       = aws_s3_bucket.website_bucket.bucket
-  key          = "error.html"
-  source       = "/home/ubuntu/My_Terraform_Module1/static-website-hosting-1/error.html"  # Update to the correct path
-  content_type = "text/html"
-}
-
 resource "aws_s3_bucket_policy" "public_read_access" {
   bucket = aws_s3_bucket.website_bucket.id
   policy = <<EOF
@@ -46,8 +32,9 @@ resource "aws_s3_bucket_policy" "public_read_access" {
     {
       "Effect": "Allow",
       "Principal": "*",
-      "Action": "s3:GetObject",
+      "Action": [ "s3:GetObject" ],
       "Resource": [
+        "${aws_s3_bucket.website_bucket.arn}",
         "${aws_s3_bucket.website_bucket.arn}/*"
       ]
     }

@@ -1,3 +1,3 @@
 locals {
-  current_zone = var.zone_map[var.region]
+  current_zone = var.domain_name
 }

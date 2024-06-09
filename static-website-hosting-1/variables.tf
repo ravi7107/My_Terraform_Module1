@@ -22,7 +22,7 @@ variable "zone_map" {
 
 variable "domain_name" {
   description = "The domain name to associate with this site"
-  type        = string
+  default     = "quickshifts.in"
 }
 
 variable "rds_instance_class" {
