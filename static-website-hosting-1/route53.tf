@@ -25,3 +25,21 @@ resource "aws_route53_record" "root" {
     evaluate_target_health = false
   }
 }
+
+variable "zone_map" {
+  description = "Map of regions to Route 53 hosted zone IDs"
+  type = map(object({
+    domain_name = string
+    zone_id     = string
+  }))
+  default = {
+    "us-east-1" = {
+      domain_name = "example.com"
+      zone_id     = "Z3M3LMPEXAMPLE"
+    },
+    "us-west-2" = {
+      domain_name = "example-west.com"
+      zone_id     = "Z2LMNOPEXAMPLE"
+    }
+  }
+}
