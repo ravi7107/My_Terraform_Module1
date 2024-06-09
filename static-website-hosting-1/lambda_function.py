@@ -3,10 +3,10 @@ import boto3
 import pymysql
 
 # Configuration values
-DB_HOST = 'your-db-host'
-DB_USER = 'your-db-user'
-DB_PASSWORD = 'your-db-password'
-DB_NAME = 'your-db-name'
+DB_HOST = 'terraform-20240609052517703300000001.c9oweaww2lr2.us-east-1.rds.amazonaws.com'
+DB_USER = 'admin'
+DB_PASSWORD = 'password'
+DB_NAME = 'mydatabase'
 
 # Establish a connection to the RDS instance
 connection = pymysql.connect(
