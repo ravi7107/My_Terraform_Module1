@@ -8,7 +8,7 @@ resource "aws_route53_record" "www" {
   type    = "A"
 
   alias {
-    name                   = aws_s3_bucket.website_bucket.website_domain
+    name                   = aws_s3_bucket.website_bucket.bucket_regional_domain_name
     zone_id                = aws_s3_bucket.website_bucket.hosted_zone_id
     evaluate_target_health = false
   }
@@ -20,7 +20,7 @@ resource "aws_route53_record" "root" {
   type    = "A"
 
   alias {
-    name                   = aws_s3_bucket.website_bucket.website_domain
+    name                   = aws_s3_bucket.website_bucket.bucket_regional_domain_name
     zone_id                = aws_s3_bucket.website_bucket.hosted_zone_id
     evaluate_target_health = false
   }

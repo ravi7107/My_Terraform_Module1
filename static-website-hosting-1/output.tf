@@ -3,7 +3,7 @@ output "website_url" {
 }
 
 output "rds_endpoint" {
-  value = aws_db_instance.default.endpoint
+  value = aws_db_instance.db_instance.endpoint
 }
 
 output "domain_name" {
