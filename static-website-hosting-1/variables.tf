@@ -11,7 +11,7 @@ variable "zone_map" {
   default = {
     "us-east-1" = {
       domain_name = "example.com"
-      zone_id     = "Z3M3LMPEXAMPLE"
+      zone_id     = "Z0090704LIJEH7VV8IO9"
     },
     "us-west-2" = {
       domain_name = "example-west.com"
