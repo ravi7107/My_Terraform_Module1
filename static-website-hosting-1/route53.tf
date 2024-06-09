@@ -26,11 +26,6 @@ resource "aws_route53_record" "root" {
   }
 }
 
-variable "region" {
-  description = "The AWS region to deploy resources in"
-  default     = "us-east-1"
-}
-
 variable "zone_map" {
   description = "Map of regions to Route 53 hosted zone IDs"
   type = map(object({
