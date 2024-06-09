@@ -2,6 +2,23 @@ variable "region" {
   description = "The AWS region to deploy resources in"
   default     = "us-east-1"
 }
+variable "zone_map" {
+  description = "Map of regions to Route 53 hosted zone IDs"
+  type = map(object({
+    domain_name = string
+    zone_id     = string
+  }))
+  default = {
+    "us-east-1" = {
+      domain_name = "example.com"
+      zone_id     = "Z3M3LMPEXAMPLE"
+    },
+    "us-west-2" = {
+      domain_name = "example-west.com"
+      zone_id     = "Z2LMNOPEXAMPLE"
+    }
+  }
+}
 
 variable "domain_name" {
   description = "The domain name to associate with this site"
