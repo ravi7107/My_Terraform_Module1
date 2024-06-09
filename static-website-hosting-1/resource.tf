@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "website_bucket" {
-  bucket = "web-bucket-080624"
+  bucket = "web-bucket2-080624"
 }
 
 resource "aws_s3_bucket_public_access_block" "website_bucket" {
