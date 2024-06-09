@@ -3,16 +3,6 @@ variable "region" {
   default     = "us-east-1"
 }
 
-variable "current_zone" {
-  description = "Current zone settings based on the selected region"
-  type = object({
-    domain_name = string
-    zone_id     = string
-  })
-  default = var.zone_map[var.region]
-}
-
-
 variable "domain_name" {
   description = "The domain name to associate with this site"
   type        = string
