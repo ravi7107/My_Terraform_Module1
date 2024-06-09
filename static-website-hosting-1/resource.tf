@@ -26,14 +26,14 @@ resource "aws_s3_bucket_website_configuration" "website_bucket" {
 resource "aws_s3_object" "index" {
   bucket       = aws_s3_bucket.website_bucket.bucket
   key          = "index.html"
-  source       = "path/to/your/index.html"  # Update to the correct path
+  source       = "/home/ubuntu/My_Terraform_Module1/static-website-hosting-1/index.html"  # Update to the correct path
   content_type = "text/html"
 }
 
 resource "aws_s3_object" "error" {
   bucket       = aws_s3_bucket.website_bucket.bucket
   key          = "error.html"
-  source       = "path/to/your/error.html"  # Update to the correct path
+  source       = "/home/ubuntu/My_Terraform_Module1/static-website-hosting-1/error.html"  # Update to the correct path
   content_type = "text/html"
 }
 
