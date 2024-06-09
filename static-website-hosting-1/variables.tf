@@ -32,19 +32,3 @@ variable "rds_password" {
   default     = "password"  # Make sure to replace this with a secure password
   sensitive   = true
 }
-
-variable "contact_details" {
-  description = "Contact details for domain registration"
-  type = object({
-    first_name    = string
-    last_name     = string
-    contact_type  = string  # "PERSON" | "COMPANY" | "ASSOCIATION" | "PUBLIC_BODY" | "RESELLER"
-    address_line1 = string
-    city          = string
-    state         = string
-    country_code  = string
-    postal_code   = string
-    email         = string
-    phone_number  = string
-  })
-}
