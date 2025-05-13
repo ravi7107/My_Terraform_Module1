@@ -1,38 +1,30 @@
-
-resource "aws_key_pair" "levelup_key" {
-    key_name = "levelup_key"
-    public_key = file(var.PATH_TO_PUBLIC_KEY)
-}
-
-#Create AWS Instance
-resource "aws_instance" "MyFirstInstnace" {
-  ami           = lookup(var.AMIS, var.AWS_REGION)
-  instance_type = "t2.micro"
-  availability_zone = "us-east-2a"
-  key_name      = aws_key_pair.levelup_key.key_name
+resource "aws_instance" "example-1" {
+  ami = var.AMIS
+  instance_type = var.instance_type
+  availability_zone = var.availability_zone
+  key_name = var.level_up2
 
   tags = {
-    Name = "custom_instance"
+    Name = "my_EC2_instance-1"
   }
+  
 }
 
-output "public_ip" {
-  value = aws_instance.MyFirstInstnace.public_ip 
+resource "aws_ebs_volume" "example-1" {
+  availability_zone = var.availability_zone
+  size = var.volume_size
+
+    tags = {
+      Name = "my-ebs-volume"
+    }
+  
 }
 
-#EBS resource creation
-resource "aws_ebs_volume" "ebs_volume-1" {
-  availability_zone = "us-east-2a"
-  size = 50
-  type = "gp2"
-  tags = {
-    Name = "secondar volume Disk"
-  }
+resource "aws_volume_attachment" "example" {
+    device_name = "/dev/sdh"
+    volume_id = aws_ebs_volume.example-1.id
+    instance_id = aws_instance.example-1.id
+    depends_on = [ aws_instance.example-1 ]
+  
 }
 
-#Attach EBS volume with AWS Instance
-resource "aws_volume_attachment" "ebs-volume-1-attachment" {
-  device_name = "/dev/sdh"
-  volume_id   = aws_ebs_volume.ebs_volume-1.id
-  instance_id = aws_instance.MyFirstInstnace.id
-}
